@@ -16,5 +16,23 @@
       "available": true,
       "selected": false
     }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "riadh",
+      "prive": 20000,
+      "quantity": 13,
+      "available": true,
+      "selected": false
+    },
+    {
+      "id": 2,
+      "name": "riadh",
+      "prive": 20000,
+      "quantity": 13,
+      "available": true,
+      "selected": false
+    }
   ]
 }
