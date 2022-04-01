@@ -14,7 +14,7 @@
       "prive": 20000,
       "quantity": 13,
       "available": true,
-      "selected": false
+      "selected": true
     }
   ],
   "items": [
@@ -32,7 +32,7 @@
       "prive": 20000,
       "quantity": 13,
       "available": true,
-      "selected": false
+      "selected": true
     }
   ]
 }
