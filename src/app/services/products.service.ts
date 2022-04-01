@@ -18,7 +18,12 @@ export class ProductsService {
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.host + "products");
   }
+
   getSelectedProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.host + "products?selected=true");
+  }
+
+  getSearchProducts(keyword: string): Observable<Product[]> {
+    return this.http.get<Product[]>(this.host + "products?name_like="+keyword);
   }
 }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {Product} from "../../model/product.model";
+import {Observable, of} from "rxjs";
+import {catchError, map, startWith} from "rxjs/operators";
+import {AppDataState, DataStateEnum} from "../../state/states";
 
 @Component({
   selector: 'app-products',
@@ -9,7 +12,8 @@ import {Product} from "../../model/product.model";
 })
 export class ProductsComponent implements OnInit {
 
-  public products?: Product[];
+  public products$?: Observable<AppDataState<Product[]>>;
+  readonly DataStateEnum = DataStateEnum;
 
   constructor(private productService: ProductsService) {
   }
@@ -19,23 +23,29 @@ export class ProductsComponent implements OnInit {
   }
 
   onGetAllProducts() {
-    this.productService.getAllProducts().subscribe(
-      data => {
-        this.products = data;
-      },
-      error => {
-      }
+    this.products$ = this.productService.getAllProducts().pipe(
+      map((data) => ({dataState: DataStateEnum.LOADED, data: data}),
+        startWith({dataState: DataStateEnum.LOADING})),
+      catchError(err => of({dataState: DataStateEnum.ERROR, errorMessage: err.message}))
     );
   }
 
   onGetSelectedProducts() {
-    this.productService.getSelectedProducts().subscribe(
-      data => {
-        this.products = data;
-      },
-      error => {
-      }
+    this.products$ = this.productService.getSelectedProducts().pipe(
+      map((data) => ({dataState: DataStateEnum.LOADED, data: data}),
+        startWith({dataState: DataStateEnum.LOADING})),
+      catchError(err => of({dataState: DataStateEnum.ERROR, errorMessage: err.message}))
     );
+
+  }
+
+  onSearch(dataForm: any) {
+    this.products$ = this.productService.getSearchProducts(dataForm.keyword).pipe(
+      map((data) => ({dataState: DataStateEnum.LOADED, data: data}),
+        startWith({dataState: DataStateEnum.LOADING})),
+      catchError(err => of({dataState: DataStateEnum.ERROR, errorMessage: err.message}))
+    );
+
   }
 
 }
