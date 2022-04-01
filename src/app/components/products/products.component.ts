@@ -48,4 +48,26 @@ export class ProductsComponent implements OnInit {
 
   }
 
+  onSelect(product: Product) {
+    /*
+        this.product$ = this.productService.getProduct(product.id).pipe(
+          map((data) => ({dataState: DataStateEnum.LOADED, data: data}),
+            startWith({dataState: DataStateEnum.LOADING})),
+          catchError(err => of({dataState: DataStateEnum.ERROR, errorMessage: err.message}))
+        );
+    */
+
+  }
+
+  onUpdateSelected(product: Product) {
+    this.productService.updateSelected(product).subscribe(
+      data => product = data
+    )
+  }
+  onDeleteProduct(product: Product) {
+    this.productService.deleteSelected(product).subscribe(
+      data => this.onGetAllProducts()
+    )
+  }
+
 }

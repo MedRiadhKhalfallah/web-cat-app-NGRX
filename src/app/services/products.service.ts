@@ -24,6 +24,18 @@ export class ProductsService {
   }
 
   getSearchProducts(keyword: string): Observable<Product[]> {
-    return this.http.get<Product[]>(this.host + "products?name_like="+keyword);
+    return this.http.get<Product[]>(this.host + "products?name_like=" + keyword);
+  }
+
+  getProduct(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.host + "products/" + id);
+  }
+
+  updateSelected(product: Product): Observable<Product> {
+    product.selected = !product.selected;
+    return this.http.put<Product>(this.host + "products/" + product.id, product);
+  }
+  deleteSelected(product: Product): Observable<Product> {
+    return this.http.delete<Product>(this.host + "products/" + product.id);
   }
 }
