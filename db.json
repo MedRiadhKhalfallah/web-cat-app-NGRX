@@ -15,6 +15,22 @@
       "quantity": 13,
       "available": true,
       "selected": true
+    },
+    {
+      "name": "7ama7ama",
+      "price": "15000",
+      "quantity": "15",
+      "selected": true,
+      "available": true,
+      "id": 3
+    },
+    {
+      "name": "med",
+      "price": "14444",
+      "quantity": "12",
+      "selected": false,
+      "available": false,
+      "id": 4
     }
   ],
   "items": [
