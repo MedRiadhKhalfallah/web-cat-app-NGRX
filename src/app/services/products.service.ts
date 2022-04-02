@@ -27,12 +27,15 @@ export class ProductsService {
     return this.http.get<Product[]>(this.host + "products?name_like=" + keyword);
   }
 
-  getProduct(id: number): Observable<Product[]> {
-    return this.http.get<Product[]>(this.host + "products/" + id);
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(this.host + "products/" + id);
   }
 
   updateSelected(product: Product): Observable<Product> {
     product.selected = !product.selected;
+    return this.http.put<Product>(this.host + "products/" + product.id, product);
+  }
+  updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(this.host + "products/" + product.id, product);
   }
   saveProduct(product: Product): Observable<Product> {
