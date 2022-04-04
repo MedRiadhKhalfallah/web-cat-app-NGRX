@@ -21,7 +21,15 @@
       "name": "7ama7ama",
       "price": "15000",
       "quantity": "15",
-      "selected": true,
+      "selected": false,
+      "available": false
+    },
+    {
+      "id": 4,
+      "name": "alloo2",
+      "price": "222",
+      "quantity": "22",
+      "selected": false,
       "available": false
     }
   ],

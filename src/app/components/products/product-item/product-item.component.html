@@ -1,0 +1,19 @@
+<tr>
+  <td>{{product.id}}</td>
+  <td>{{product.name}}</td>
+  <td>{{product.price}}</td>
+  <td>{{product.quantity}}</td>
+  <td>{{product.selected}}</td>
+  <td>{{product.available}}</td>
+  <td>
+    <button (click)="onSelect(product)" class="btn btn-sm btn-outline-success"><span
+      class="fa fa-user-secret"></span></button>
+    <button (click)="onUpdateSelected(product)" class="btn btn-sm btn-outline-warning"><span
+      class="fa fa-edit"></span>update selected
+    </button>
+    <button (click)="onDeleteProduct(product)" class="btn btn-sm btn-outline-danger"><span
+      class="fa fa-trash-o"></span></button>
+    <button (click)="onEditProduct(product)" class="btn btn-sm btn-outline-danger"><span
+      class="fa fa-edit"></span></button>
+  </td>
+</tr>
