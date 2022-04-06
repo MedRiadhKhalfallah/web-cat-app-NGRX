@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../../model/product.model";
 import {ActionEvent, ProductActionsTypes} from "../../../state/states";
+import {EventDriverService} from "../../../services/event.driver.service";
 
 @Component({
   selector: 'app-product-item',
@@ -9,27 +10,28 @@ import {ActionEvent, ProductActionsTypes} from "../../../state/states";
 })
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
-  @Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter();
-
-  constructor() {
+  constructor(private eventDriverService: EventDriverService) {
   }
 
   ngOnInit(): void {
   }
 
   onSelect(product: Product) {
-    this.productEventEmitter.emit({type: ProductActionsTypes.SELECT_PRODUCT, payload: product});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.SELECT_PRODUCT, payload: product});
   }
 
   onUpdateSelected(product: Product) {
-    this.productEventEmitter.emit({type: ProductActionsTypes.UPDATE_SELECTED_PRODUCT, payload: product});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.UPDATE_SELECTED_PRODUCT, payload: product});
+
   }
 
   onDeleteProduct(product: Product) {
-    this.productEventEmitter.emit({type: ProductActionsTypes.DELETE_PRODUCT, payload: product});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.DELETE_PRODUCT, payload: product});
+
   }
 
   onEditProduct(product: Product) {
-    this.productEventEmitter.emit({type: ProductActionsTypes.EDIT_PRODUCT, payload: product});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.EDIT_PRODUCT, payload: product});
+
   }
 }

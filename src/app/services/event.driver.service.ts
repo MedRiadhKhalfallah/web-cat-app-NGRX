@@ -10,7 +10,14 @@ export class EventDriverService {
   sourceEventSubject: Subject<ActionEvent> = new Subject<ActionEvent>();
   sourceEventSubjectObservable = this.sourceEventSubject.asObservable();
 
+  sourceEventSubject2: Subject<ActionEvent> = new Subject<ActionEvent>();
+  sourceEventSubjectObservable2 = this.sourceEventSubject.asObservable();
+
   publishEvent(event: ActionEvent) {
     this.sourceEventSubject.next(event);
+  }
+
+  publishEvent2(event: ActionEvent) {
+    this.sourceEventSubject2.next(event);
   }
 }

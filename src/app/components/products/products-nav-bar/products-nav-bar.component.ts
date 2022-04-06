@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActionEvent, ProductActionsTypes} from "../../../state/states";
+import {EventDriverService} from "../../../services/event.driver.service";
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -8,27 +9,25 @@ import {ActionEvent, ProductActionsTypes} from "../../../state/states";
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  @Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter();
-
-  constructor() {
+  constructor(private eventDriverService: EventDriverService) {
   }
 
   ngOnInit(): void {
   }
 
   onSearch(value: any) {
-    this.productEventEmitter.emit({type: ProductActionsTypes.SEARCH_PRODUCTS, payload: value});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.SEARCH_PRODUCTS, payload: value});
   }
 
   onNewProduct() {
-    this.productEventEmitter.emit({type: ProductActionsTypes.NEW_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.NEW_PRODUCTS});
   }
 
   onGetSelectedProducts() {
-    this.productEventEmitter.emit({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
   }
 
   onGetAllProducts() {
-    this.productEventEmitter.emit({type: ProductActionsTypes.GET_ALL_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_ALL_PRODUCTS});
   }
 }
