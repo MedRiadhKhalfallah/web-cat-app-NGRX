@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {ActionEvent, AppDataState, DataStateEnum, ProductActionsTypes} from "../../../state/states";
-import {Product} from "../../../model/product.model";
+import {Store} from "@ngrx/store";
+import {ProductsState, ProductsStateEnum} from "../../../ngrx/products.reducer";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-products-list',
@@ -10,12 +11,19 @@ import {Product} from "../../../model/product.model";
 })
 export class ProductsListComponent implements OnInit {
 
-  @Input() productsInput$?: Observable<AppDataState<Product[]>>;
-  readonly DataStateEnum = DataStateEnum;
+  /*
+    @Input() productsInput$?: Observable<AppDataState<Product[]>>;
+  */
+  readonly DataStateEnum = ProductsStateEnum;
+  productsState$!: Observable<ProductsState>;
 
-  constructor() {
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit(): void {
+    // prodState le nom de state dans le fichier app.module.ts
+    this.productsState$ = this.store.pipe(
+      map((state) => state.prodState)
+    )
   }
 }

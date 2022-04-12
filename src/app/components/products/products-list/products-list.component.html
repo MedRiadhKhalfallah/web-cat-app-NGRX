@@ -1,4 +1,7 @@
-<ng-container *ngIf="(productsInput$ | async) as resultat" [ngSwitch]="resultat.dataState">
+<ng-container *ngIf="(productsState$ | async) as resultat" [ngSwitch]="resultat.dataState">
+  <ng-container *ngSwitchCase="DataStateEnum.INITIAL">
+    <div> Initial State</div>
+  </ng-container>
   <ng-container *ngSwitchCase="DataStateEnum.LOADING">
     Loading .....
   </ng-container>
@@ -10,7 +13,7 @@
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="DataStateEnum.LOADED">
-    <div class="container" *ngIf="productsInput$">
+    <div class="container" *ngIf="productsState$| async">
       <table class="table">
         <thead>
         <th>ID</th>
@@ -20,7 +23,8 @@
         <th>Selected</th>
         <th>Available</th>
         </thead>
-        <app-product-item *ngFor="let product of resultat.data" [product]="product" style="display: contents"></app-product-item>
+        <app-product-item *ngFor="let product of resultat.products" [product]="product"
+                          style="display: contents"></app-product-item>
       </table>
     </div>
   </ng-container>

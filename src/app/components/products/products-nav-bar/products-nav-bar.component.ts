@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActionEvent, ProductActionsTypes} from "../../../state/states";
 import {EventDriverService} from "../../../services/event.driver.service";
+import {Store} from "@ngrx/store";
+import {GetAllProductsAction, GetSelectedProductsAction} from "../../../ngrx/products.actions";
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -9,7 +11,7 @@ import {EventDriverService} from "../../../services/event.driver.service";
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  constructor(private eventDriverService: EventDriverService) {
+  constructor(private eventDriverService: EventDriverService, private store: Store<any>) {
   }
 
   ngOnInit(): void {
@@ -24,10 +26,13 @@ export class ProductsNavBarComponent implements OnInit {
   }
 
   onGetSelectedProducts() {
-    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
+    this.store.dispatch(new GetSelectedProductsAction({}))
+
+    // this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
   }
 
   onGetAllProducts() {
-    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_ALL_PRODUCTS});
+    this.store.dispatch(new GetAllProductsAction({}))
+    // this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_ALL_PRODUCTS});
   }
 }
