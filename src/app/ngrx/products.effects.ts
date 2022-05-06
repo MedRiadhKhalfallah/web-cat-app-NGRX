@@ -7,7 +7,7 @@ import {
   GetAllProductsActionError,
   GetAllProductsActionSuccess, GetSelectedProductsActionError, GetSelectedProductsActionSuccess,
   ProductsActions,
-  ProductsActionsTypes
+  ProductsActionsTypes, SelectProductActionError, SelectProductActionSuccess
 } from "./products.actions";
 import {catchError, map} from "rxjs/operators";
 
@@ -40,6 +40,21 @@ export class ProductsEffects {
               return new GetSelectedProductsActionSuccess(products)
             }),
             catchError((err) => of(new GetSelectedProductsActionError(err.message))))
+        })
+      )
+    }
+  )
+
+  selectProductEffect: Observable<Action> = createEffect(
+    () => {
+      return this.effectActions.pipe(
+        ofType(ProductsActionsTypes.SELECT_PRODUCT),
+        mergeMap((action: ProductsActions) => {
+          return this.productsService.updateSelected(action.payload).pipe(
+            map(product => {
+              return new SelectProductActionSuccess(product)
+            }),
+            catchError((err) => of(new SelectProductActionError(err.message))))
         })
       )
     }

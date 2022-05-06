@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../../model/product.model";
-import {ActionEvent, ProductActionsTypes} from "../../../state/states";
+import {ProductActionsTypes} from "../../../state/states";
 import {EventDriverService} from "../../../services/event.driver.service";
+import {Store} from "@ngrx/store";
+import {SelectProductAction} from "../../../ngrx/products.actions";
 
 @Component({
   selector: 'app-product-item',
@@ -10,7 +12,8 @@ import {EventDriverService} from "../../../services/event.driver.service";
 })
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
-  constructor(private eventDriverService: EventDriverService) {
+
+  constructor(private eventDriverService: EventDriverService, private store: Store) {
   }
 
   ngOnInit(): void {
@@ -21,7 +24,9 @@ export class ProductItemComponent implements OnInit {
   }
 
   onUpdateSelected(product: Product) {
-    this.eventDriverService.publishEvent({type: ProductActionsTypes.UPDATE_SELECTED_PRODUCT, payload: product});
+    // this.eventDriverService.publishEvent({type: ProductActionsTypes.UPDATE_SELECTED_PRODUCT, payload: product});
+    this.store.dispatch(new SelectProductAction(product));
+
 
   }
 

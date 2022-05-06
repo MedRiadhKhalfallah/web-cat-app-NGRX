@@ -1,44 +1,12 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "riadh",
-      "prive": 20000,
-      "quantity": 13,
-      "available": true,
-      "selected": true
-    },
-    {
-      "id": 2,
-      "name": "ameni",
-      "prive": 20000,
-      "quantity": 13,
-      "available": true,
-      "selected": true
-    },
-    {
-      "id": 3,
-      "name": "7ama7ama",
-      "price": "15000",
+      "name": "test1",
+      "price": "55",
       "quantity": "15",
-      "selected": false,
-      "available": false
-    },
-    {
-      "id": 4,
-      "name": "alloo3",
-      "price": "222",
-      "quantity": "22",
       "selected": true,
-      "available": false
-    },
-    {
-      "id": 5,
-      "name": "ttttevent1",
-      "price": "15",
-      "quantity": "22",
-      "selected": true,
-      "available": true
+      "available": true,
+      "id": 1
     }
   ],
   "items": [
