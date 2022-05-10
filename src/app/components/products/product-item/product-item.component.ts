@@ -3,7 +3,7 @@ import {Product} from "../../../model/product.model";
 import {ProductActionsTypes} from "../../../state/states";
 import {EventDriverService} from "../../../services/event.driver.service";
 import {Store} from "@ngrx/store";
-import {SelectProductAction} from "../../../ngrx/products.actions";
+import {DeleteProductAction, SelectProductAction} from "../../../ngrx/products.actions";
 
 @Component({
   selector: 'app-product-item',
@@ -31,7 +31,8 @@ export class ProductItemComponent implements OnInit {
   }
 
   onDeleteProduct(product: Product) {
-    this.eventDriverService.publishEvent({type: ProductActionsTypes.DELETE_PRODUCT, payload: product});
+    // this.eventDriverService.publishEvent({type: ProductActionsTypes.DELETE_PRODUCT, payload: product});
+    this.store.dispatch(new DeleteProductAction(product));
 
   }
 
