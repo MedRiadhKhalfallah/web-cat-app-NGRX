@@ -18,6 +18,9 @@ import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {productsReducer} from "./ngrx/products.reducer";
 import {ProductsEffects} from "./ngrx/products.effects";
+// import {AccordionModule} from 'primeng/accordion';
+// import {MenuItem} from 'primeng/api';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import {ProductsEffects} from "./ngrx/products.effects";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

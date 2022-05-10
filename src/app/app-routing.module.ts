@@ -10,6 +10,12 @@ const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "newProduct", component: ProductAddComponent},
   {path: "editProduct/:id", component: ProductEditComponent},
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+      .then(mod => mod.AdminModule)
+  },
+
 ]
 
 
