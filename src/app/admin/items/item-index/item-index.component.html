@@ -1,18 +1,3 @@
 <app-item-search></app-item-search>
 <app-item-nav-bar></app-item-nav-bar>
 <app-item-list></app-item-list>
-
-<p-listbox [options]="countries" [(ngModel)]="selectedCountries" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'250px'}">
-  <ng-template pTemplate="header">
-    Header Content
-  </ng-template>
-  <ng-template let-country pTemplate="item">
-    <div class="country-item">
-      <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-      <div>{{country.name}}</div>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    Footer Content
-  </ng-template>
-</p-listbox>

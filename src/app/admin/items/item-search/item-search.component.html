@@ -1,1 +1,25 @@
-<p>item-search works!</p>
+  <ng-container>
+    <p-panel header="Search" [toggleable]="true">
+      <form [formGroup]="productSearchFormGroup" (ngSubmit)="onSearchProduct()">
+        <div class="grid p-fluid">
+          <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input type="text" pInputText placeholder="Name" [formControlName]="'name'">
+            </div>
+          </div>
+
+          <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">£</span>
+              <input type="text" pInputText placeholder="Price" [formControlName]="'price'">
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p-button type="submit" label="Search" icon="pi pi-search" iconPos="left" [loading]="isLoading"></p-button>
+          </div>
+        </div>
+      </form>
+    </p-panel>
+  </ng-container>
+

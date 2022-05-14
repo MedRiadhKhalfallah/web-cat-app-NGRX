@@ -14,7 +14,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {BrowserModule} from "@angular/platform-browser";
 import {ListboxModule} from 'primeng/listbox';
 import {ButtonModule} from 'primeng/button';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CheckboxModule} from "primeng/checkbox";
+import {RadioButtonModule} from "primeng/radiobutton";
+import { InputTextModule } from "primeng/inputtext";
+import {PanelModule} from 'primeng/panel';
+import {StoreModule} from "@ngrx/store";
+import {productsReducer} from "../ngrx/products.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {ProductsEffects} from "../ngrx/products.effects";
+import {itemsReducer} from "../ngrx/items/items.reducer";
+import {ItemsEffects} from "../ngrx/items/items.effects";
 
 
 @NgModule({
@@ -33,7 +43,15 @@ import {FormsModule} from "@angular/forms";
     ButtonModule,
     FormsModule,
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CheckboxModule,
+    RadioButtonModule,
+    InputTextModule,
+    PanelModule,
+    ReactiveFormsModule,
+    // StoreModule.forRoot({itemState: itemsReducer}),
+    // EffectsModule.forRoot([ItemsEffects]),
+
   ]
 })
 export class AdminModule { }

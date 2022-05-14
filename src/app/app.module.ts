@@ -21,6 +21,8 @@ import {ProductsEffects} from "./ngrx/products.effects";
 // import {AccordionModule} from 'primeng/accordion';
 // import {MenuItem} from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     StoreModule.forRoot({prodState: productsReducer}),
     EffectsModule.forRoot([ProductsEffects]),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    MenubarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
