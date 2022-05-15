@@ -4,6 +4,7 @@ import {ProductActionsTypes} from "../../../state/states";
 import {EventDriverService} from "../../../services/event.driver.service";
 import {Store} from "@ngrx/store";
 import {DeleteProductAction, SelectProductAction} from "../../../ngrx/products.actions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-item',
@@ -13,7 +14,7 @@ import {DeleteProductAction, SelectProductAction} from "../../../ngrx/products.a
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
 
-  constructor(private eventDriverService: EventDriverService, private store: Store) {
+  constructor(private eventDriverService: EventDriverService,private router: Router, private store: Store) {
   }
 
   ngOnInit(): void {
@@ -37,7 +38,8 @@ export class ProductItemComponent implements OnInit {
   }
 
   onEditProduct(product: Product) {
-    this.eventDriverService.publishEvent({type: ProductActionsTypes.EDIT_PRODUCT, payload: product});
+    //this.eventDriverService.publishEvent({type: ProductActionsTypes.EDIT_PRODUCT, payload: product});
+    this.router.navigateByUrl("/editProduct/" + product.id);
 
   }
 }

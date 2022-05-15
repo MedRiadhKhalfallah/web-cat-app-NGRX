@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <ul class="navbar navbar-nav">
     <li>
-      <button (click)="onGetAllProducts()" class="btn btn-outline-info m-2">All</button>
+      <button [ngClass]="state.currentAction?.type==ProductsActionsTypes.GET_ALL_PRODUCTS_SUCCESS?'btn-danger':'btn-outline-info'" (click)="onGetAllProducts()" class="btn m-2">All</button>
     </li>
     <li>
-      <button (click)="onGetSelectedProducts()" class="btn btn-outline-info ml-2">Selected</button>
+      <button [ngClass]="state.currentAction?.type==ProductsActionsTypes.GET_SELECTED_PRODUCTS_SUCCESS?'btn-danger':'btn-outline-info'" (click)="onGetSelectedProducts()" class="btn ml-2">Selected</button>
     </li>
     <li>
-      <button (click)="onNewProduct()" class="btn btn-outline-info ml-2">New product</button>
+      <button [ngClass]="state.currentAction?.type==ProductsActionsTypes.NEW_PRODUCT_SUCCESS?'btn-danger':'btn-outline-info'"  (click)="onNewProduct()" class="btn ml-2">New product</button>
     </li>
   </ul>
   <ul class="navbar navbar-nav m-lg-auto">

@@ -1,26 +1,49 @@
-<div class="container" *ngIf="productFormGroup">
-  {{productFormGroup.value | json}}
-  <form [formGroup]="productFormGroup">
-    <div class="form-check-label">
-      <label>Name</label>
-      <input type="text" class="form-control" formControlName="name">
-    </div>
-    <div class="form-check-label">
-      <label>Price</label>
-      <input type="text" class="form-control" formControlName="price">
-    </div>
-    <div class="form-check-label">
-      <label>Quantity</label>
-      <input type="text" class="form-control" formControlName="quantity">
-    </div>
-    <div class="form-check">
-      <label>Selected</label>
-      <input type="checkbox" formControlName="selected" class="form-check">
-    </div>
-    <div class="form-check">
-      <label>Available</label>
-      <input type="checkbox" formControlName="available" class="form-check">
-    </div>
-    <button class="btn btn-success" (click)="onSaveProduct()">Save</button>
-  </form>
+<div class="container">
+  <ng-container  *ngIf="productFormGroup">
+    <ng-container *ngIf="state as data">
+      <ng-container *ngIf="data.dataState==productStateEnum.LOADING">
+        Loading ...
+      </ng-container>
+      <ng-container class="alert-danger" *ngIf="data.dataState==productStateEnum.ERROR">
+        {{data.errorMessage}}
+      </ng-container>
+      <ng-container *ngIf="data.dataState==productStateEnum.UPDATED">
+        <div class="alert-succes container p-3 m-3">
+          <span>Product saved successfully</span>
+          <button class="btn btn-success ml-3" (click)="okUpdate()">OK</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="data.dataState==productStateEnum.GET">
+        <form [formGroup]="productFormGroup" (ngSubmit)="onEditProduct()">
+          <div class="form-check-label">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="name" id="name"
+                   [ngClass]="{'is-invalid':submitted && productFormGroup.controls['name'].errors}">
+            <div *ngIf="submitted && productFormGroup.controls['name'].errors" class="invalid-feedback">
+              <div *ngIf="productFormGroup.controls['name'].errors['required']"> Name is Required</div>
+            </div>
+
+          </div>
+          <div class="form-check-label">
+            <label>Price</label>
+            <input type="text" class="form-control" formControlName="price">
+          </div>
+          <div class="form-check-label">
+            <label>Quantity</label>
+            <input type="text" class="form-control" formControlName="quantity">
+          </div>
+          <div class="form-check">
+            <label>Selected</label>
+            <input type="checkbox" formControlName="selected" class="form-check">
+          </div>
+          <div class="form-check">
+            <label>Available</label>
+            <input type="checkbox" formControlName="available" class="form-check">
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
 </div>

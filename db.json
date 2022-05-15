@@ -17,20 +17,12 @@
       "id": 3
     },
     {
-      "name": "fffff",
+      "id": 4,
+      "name": "RTRTRT1",
       "price": 0,
       "quantity": 0,
       "selected": true,
-      "available": true,
-      "id": 4
-    },
-    {
-      "name": "yyyyy",
-      "price": 0,
-      "quantity": 0,
-      "selected": true,
-      "available": true,
-      "id": 5
+      "available": true
     }
   ],
   "items": [

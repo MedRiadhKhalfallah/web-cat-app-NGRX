@@ -5,9 +5,9 @@ import {mergeMap, Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
 import {
   DeleteProductActionError,
-  DeleteProductActionSuccess,
+  DeleteProductActionSuccess, EditProductActionError, EditProductActionSuccess,
   GetAllProductsActionError,
-  GetAllProductsActionSuccess,
+  GetAllProductsActionSuccess, GetProductActionError, GetProductActionSuccess,
   GetSelectedProductsActionError,
   GetSelectedProductsActionSuccess,
   NewProductActionSuccess,
@@ -100,6 +100,34 @@ export class ProductsEffects {
               return new SaveProductActionSuccess(product)
             }),
             catchError((err) => of(new SaveProductActionError(err.message))))
+        })
+      )
+    }
+  )
+  editProductEffect: Observable<Action> = createEffect(
+    () => {
+      return this.effectActions.pipe(
+        ofType(ProductsActionsTypes.EDIT_PRODUCT),
+        mergeMap((action: ProductsActions) => {
+          return this.productsService.updateProduct(action.payload).pipe(
+            map((product) => {
+              return new EditProductActionSuccess(product)
+            }),
+            catchError((err) => of(new EditProductActionError(err.message))))
+        })
+      )
+    }
+  )
+  getProductByIdEffect: Observable<Action> = createEffect(
+    () => {
+      return this.effectActions.pipe(
+        ofType(ProductsActionsTypes.GET_PRODUCT),
+        mergeMap((action: ProductsActions) => {
+          return this.productsService.getProduct(action.payload).pipe(
+            map((product) => {
+              return new GetProductActionSuccess(product)
+            }),
+            catchError((err) => of(new GetProductActionError(err.message))))
         })
       )
     }

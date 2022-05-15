@@ -59,6 +59,8 @@ export class ProductAddComponent implements OnInit {
   }
 
   newProduct() {
+    this.submitted=true;
+    if (this.productFormGroup?.invalid) return;
     this.store.dispatch(new NewProductAction({}));
   }
 }

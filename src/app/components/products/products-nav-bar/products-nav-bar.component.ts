@@ -2,8 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActionEvent, ProductActionsTypes} from "../../../state/states";
 import {EventDriverService} from "../../../services/event.driver.service";
 import {Store} from "@ngrx/store";
-import {GetAllProductsAction, GetSelectedProductsAction} from "../../../ngrx/products.actions";
+import {GetAllProductsAction, GetSelectedProductsAction, ProductsActionsTypes} from "../../../ngrx/products.actions";
 import {Router} from "@angular/router";
+import {ProductsState, ProductsStateEnum} from "../../../ngrx/products.reducer";
+import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -12,11 +14,18 @@ import {Router} from "@angular/router";
 })
 export class ProductsNavBarComponent implements OnInit {
 
+  state!: ProductsState;
+  readonly ProductsActionsTypes=ProductsActionsTypes;
   constructor(private eventDriverService: EventDriverService, private store: Store<any>,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.store.subscribe(
+      state => {
+        this.state = state.prodState;
+      }
+    )
   }
 
   onSearch(value: any) {
